@@ -41,8 +41,9 @@ void findHighestNumberInEveryLine(int L, int C, int M[MAX][MAX], int H[MAX]){
 void showHighests(int H[MAX]){ 
     for(int i=0;H[i]!='\0';i++){
         printf("The highest in the line %d is %d.\n", i, H[i]);
- 	} 
-} int main(){
+    } 
+} 
+int main(){
     //this program will find the highest element in every line in a matrix 	
     int lines, columns;
     int matrix[MAX][MAX], highests[MAX];
