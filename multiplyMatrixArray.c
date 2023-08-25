@@ -1,9 +1,9 @@
 #include <string.h>  
-#include <stdio.h>  
-#include <stdlib.h>  
-#define MAX 100  
+ #include <stdio.h>  
+ #include <stdlib.h>  
+ #define MAX 100  
   
-void readSizeOfMatrix(int *R, int *C){
+ void readSizeOfMatrix(int *R, int *C){
      do{
          printf("Please, input the how much rows do you want: ");          
      scanf("%d", R);
@@ -53,9 +53,9 @@ void readSizeOfMatrix(int *R, int *C){
          scanf("%d", &V[i]); 
      }  
  } 
- void displayElementsOfArray(int V[MAX]){ 
+ void displayElementsOfArray(int S, int V[MAX]){ 
      printf("\nYour array is:\n"); 
-     for(int i=0;V[i]!='\0';i++){ 
+     for(int i=0;i<S;i++){ 
          printf("%d ", V[i]); 
      } 
  } 
@@ -79,5 +79,5 @@ void readSizeOfMatrix(int *R, int *C){
      readElementsOfArray(size, array); 
      displayElementsOfArray(); 
      multiplyMatrixAndArray(rows, columns, matrix, array, newArray); 
-     displayElementsOfArray(newArray); 
+     displayElementsOfArray(size, newArray); 
  }
