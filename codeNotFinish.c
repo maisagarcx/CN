@@ -21,12 +21,13 @@ void displayElementsOfArray(int yourSize, int vector[MAX]){
         printf("%d ", vector[index]); 
     } 
 }
-void calculateNormForAny(*normPointer){
+void whichNorm(*normPointer){
 	printf("Please choose a P-norm for your calculus: ");
 	do{
 		scanf("%d", &normPointer);
 	}while(*normPointer>=LIMIT);
 }
+void 
 void main(){
 	//this program will calculate a norm for any
 	int size, norm, array[MAX];
@@ -34,6 +35,6 @@ void main(){
 	readElementsOfArray(size, array);
 	displayElementsOfArray(size, array);
 	whichNorm(&norm);
-	calculateSum(size, norm, array);
+	sumOfAny(size, norm, array);
 	
 }
