@@ -1,4 +1,3 @@
-% this is me doing some shit
 % norm-p
 
 prompt = "Input the size of array: ";
@@ -19,3 +18,6 @@ for i=1:1:n
 end
 
 pnorm = summy .^ (1/p);
+
+fprintf('The norm-p of your array is %f', pnorm);
+
