@@ -9,9 +9,12 @@ function summy = norm_1()
     end
     
     summy=0;
-    for i=1:1:n
-    summy = summy + abs(vet(i));
+    for i = 1:n
+        summy = summy + abs(vet(i));
     end
 
     %fprintf('The norm-1 of your array is %f\n', summy);
 end
+
+    
+    
