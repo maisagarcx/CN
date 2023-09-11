@@ -13,7 +13,7 @@ function norm = automatic_norm_2(vet)
         summy = summy + abs(vet(i)).^2;
     end
     
-     norm = summy.^(1/2);
+    norm = summy.^(1/2);
 
     %fprintf("\nThe norm-2 of your array is %d", norm);
 end
