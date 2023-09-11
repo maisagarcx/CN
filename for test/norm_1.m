@@ -1,7 +1,7 @@
 function summy = norm_1()
     prompt = "Please input the size of your array: ";
     n = input(prompt);
-    vet = zeros(1,n);
+    vet = zeros(1, n);
     
     for i = 1:n
         prompt = sprintf("Input element %d: ", i);
