@@ -1,4 +1,4 @@
-function max_norm(vet) 
+function max_norm = max_norm(vet) 
      n = length(vet); 
      
      %fprintf("The size of your array is %d \n", n); 
@@ -6,7 +6,7 @@ function max_norm(vet)
      max_norm = vet(1);
      for i = 1:n 
          if vet(i)>=max_norm
-             max_norm=vet(i)
+             max_norm=vet(i);
          end
      end 
   
