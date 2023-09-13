@@ -1,4 +1,4 @@
-function summy = automatic_norm_1(vet)
+function summy = norm_1(vet)
     n = length(vet); % gets the size of the array
     summy = 0;
 
