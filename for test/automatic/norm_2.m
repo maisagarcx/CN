@@ -1,4 +1,4 @@
-function norm = automatic_norm_2(vet)
+function norm = automatic_orm_2(vet)
     n = length(vet);
     summy = 0;
 
