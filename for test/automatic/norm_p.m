@@ -11,5 +11,5 @@ function norm_p = norm_p(vet, p)
          summy = summy + abs(vet(i)).^p; 
      end 
   
-     norm_p = summy.^(1/p);  
+     norm_p = summy^(1/p);  
  end
