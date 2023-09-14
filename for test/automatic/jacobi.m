@@ -1,5 +1,9 @@
 function [X, iter, error] = jacobi(order, matrix, ind_vet, toler, max_iter) 
      %construction of matrices for iterations 
+     
+     X=zeros(1,order);
+     v=zeros(1,order);
+     
      for i=1:order 
          r=1/matrix(i,i); 
          for j=1:order 
@@ -11,6 +15,7 @@ function [X, iter, error] = jacobi(order, matrix, ind_vet, toler, max_iter)
          X(i)=ind_vet(i); 
      end 
      iter=0; 
+     
      %Jacobi iterations 
      while ~difMax<toler||iter>=max_iter 
          iter=iter+1; 
@@ -38,5 +43,5 @@ function [X, iter, error] = jacobi(order, matrix, ind_vet, toler, max_iter)
          fprintf("O número de iterações é %d\nA diferença máxima é %d", iter, difMax);
          disp(X);
      end 
-     error=difMax>=toler
+     error=difMax>=toler;
  end
