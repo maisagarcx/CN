@@ -18,6 +18,7 @@ function [X, iter, error] = gauss_seidel(order, matrix, ind_vet, toler, iterMax)
     iter=0;
     
     %Gauss-Seidel iterations
+    difMax=toler+1;
     while ~(difMax<toler||iter>=iterMax)
         iter=iter+1;
         for i=1:order
