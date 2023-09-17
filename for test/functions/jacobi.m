@@ -17,7 +17,8 @@ function [X, iter, error] = jacobi(order, matrix, ind_vet, toler, max_iter)
      iter=0; 
      
      %Jacobi iterations 
-     while ~difMax<toler||iter>=max_iter 
+     difMax=toler+1;
+     while ~(difMax<toler||iter>=max_iter)
          iter=iter+1; 
          for i=1:order 
              summy=0; 
