@@ -16,7 +16,7 @@ function [fator, det, error] = cholesky(order, matrix)
             error(prompt);
         else
             fator(j,j)=sqrt(t);
-            r=1/matrix(j,j);
+            r=1/fator(j,j);
         end
         for i=j+1:order
             summy=0;
