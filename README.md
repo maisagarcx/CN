@@ -1,6 +1,10 @@
 # CNEE: Cálculo Numérico
 
-Códigos desenvolvidos, em MATLAB, para a disciplina DEIN002.
+- [Algoritmos Numéricos](https://drive.google.com/drive/u/1/folders/1ypSuLBkAdTDFcqNDHhFhFcSgu1zf4_Qs)
+<img
+src="https://portalpadrao.ufma.br/site/institucional/superintendencias/sce/manual-da-marca/png-logo-ufma-colorido.png/@@images/image.png"
+width="120" align="right">
+</a>
 
 #### Tabelas de Resoluções
 
