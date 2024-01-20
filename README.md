@@ -7,6 +7,4 @@ Seja bem-vindo! Este repósitorio contém códigos desenvolvidos, em MATLAB, par
 Boa Sorte!
 
 > [!TIP]
-> Visite o [Drive do Diretório Acadêmico](https://drive.google.com/drive/u/1/folders/1ypSuLBkAdTDFcqNDHhFhFcSgu1zf4_Qs) para mais códigos prontinhos :)
-> 
->
+> Visite o [Drive do Diretório Acadêmico](https://drive.google.com/drive/u/1/folders/1ypSuLBkAdTDFcqNDHhFhFcSgu1zf4_Qs) para mais programas prontinhos :)
