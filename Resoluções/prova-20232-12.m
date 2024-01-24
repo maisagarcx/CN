@@ -24,46 +24,53 @@ tab(1,2) = "SIGMA2";
 [b3, tab(3,1), tab(3,2)] = regressaoLinearMultipla(10, 1, 3, t1', Rt);
 
 % MODELO EXPONENCIAL:
-% numero de parametros = 4
-[b4, tab(4,1), tab(4,2)] = regressaoLinearMultipla(10, 1, 4, t1', Rt);
+RtLOG = [log(1.00) log(0.88) log(0.72) log(0.53) log(0.47) log(0.35) log(0.26) log(0.21) log(0.16) log(0.07)];
+% Equacao 1: Rt = ae^(-kt) => log(a) - kt = log(Rt)
+[b4, tab(4,1), tab(4,2)] = regressaoLinearMultipla(10, 1, 2, t1', RtLOG);
 
 fprintf("Tabela com R2 e SIGMA2 dos modelos testados (cada linha um grau):\n");
 disp(tab);
 fprintf("Parâmetros do modelo linear:\n");
 disp(b2);
+
 fprintf("Parâmetros do modelo quadrático:\n");
 disp(b3);
+
 fprintf("Parâmetros do modelo exponencial:\n");
 disp(b4);
 
-fprintf("Vemos então, que o melhor modelo é o exponencial pois tem o SIGMA2 de\n");
-fprintf("apenas 0.0011605 e o R2 de 0.99224. Que é o mais próximo de 1.\n");
+fprintf("Vemos então, que o melhor modelo é o quadrático pois tem o SIGMA2 de\n");
+fprintf("apenas 0.0014125 e o R2 de 0.98898. Que é o mais próximo de 1.\n");
 
-fprintf("Para estimar a confiabilidade para t = 13.7 meses usando o melhor\n");
+%  Em seguida, estime a confiabilidade para 13,7 meses do melhor 
+% modelo encontrado e da Equação 1, caso não seja esse:
+
+fprintf("\nPara estimar a confiabilidade para t = 13.7 meses usando o melhor\n");
 fprintf("modelo encontrado, substituirei no polinomio construido com os\n");
-fprintf("parametros encontrados (pelo melhor modelo).\n\n")
-tempo = 13.7;
-POL = b4(1) + b4(2)*tempo + b4(3)*tempo^2 + b4(4)*tempo^3;
+fprintf("parametros encontrados no modelo quadrático.\n\n")
 
-fprintf("Substituindo em 'b4(1) + tempo*b4(2) + b4(3)*tp^2 + b4(4)*tempo^3'\n");
+tempo = 13.7;
+POL = b3(1) + b3(2)*tempo + b3(3)*tempo^2;
+
+fprintf("Substituindo em 'b3(1) + b3(2)*tempo + b3(3)*tempo^2'\n");
 fprintf("um tempo = 13.7, temos que a confiabilidade é: ");
 disp(POL);
+
+LNPOL2 = b4(1) + b4(2)*tempo;
+POL2 = exp(LNPOL2);
+% Equação de regressão: log(Rt) = b4(1) + b4(2)*t
+fprintf("Agora, substituindo na equação 1: 'log(Rt) = b4(1) + b4(2)*tempo'\n");
+fprintf("temos que a confiabilidade é: ");
+disp(POL2); 
 
 fprintf("Letra B:\n");
 % Quantos meses são necessários para a confiabilidade atingir 80%?
 % 80% em decimal é: 0.8, portanto R(t) = 0.8
 
-RtLOG = [log(1.00) log(0.88) log(0.72) log(0.53) log(0.47) log(0.35) log(0.26) log(0.21) log(0.16) log(0.07)];
-% Equacao 1: Rt = ae^(-kt) => log(a) - kt = log(0.8)
-[b1, determinacao, variancia] = regressaoLinearMultipla(10, 1, 2, t1', RtLOG);
-temp = (log(0.8) - b1(1))/b1(2);
-fprintf("Usando que R(t) = ae^(-kt) => log(0.8) = log(a) - kt, temos que\n");
+temp = (log(0.8) - b4(1))/b4(2);
+fprintf("Usando o modelo exponencial: log(0.8) = log(a) + kt, temos que\n");
 fprintf("tempo necessario para que R(t) = 0.8, é:");
 disp(temp);
-fprintf("Temos tambem, que o coeficiente de determinação é (R2): ");
-disp(determinacao);
-fprintf("E que a variancia residual é: ");
-disp(variancia);
 
 % SEGUNDA QUESTAO
 fprintf("Segunda Questão:\n\n");
