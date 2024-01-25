@@ -69,3 +69,98 @@ CARGASGN = [5 6 7 8 9]; % X
 PERDASGN = [33 31 27 32 35]; % Y
 INTGREGNEWTON = intGregoryNewton(5, CARGASGN, PERDASGN, 7.3);
 % INTGREGNEWTON = 27.6301
+
+function [b, R2, sigma2] = regressaoLinearMultipla(n, v, p, x, y)
+    
+    
+    if (v>1)&&((v+1)~=p)
+        prompt = "Modelo Invalido";
+        error(prompt);
+        return;
+    end
+    %for i=1:n % inclusao de uma coluna de 1s relativa a b⁰
+        %for j=v+1:-1:2
+            %x(i,j)=x(i,j-1);
+        %end
+        %x(i,1)=1;
+    %end
+    % disp(x);
+    if (v==1)&&(p>2) % ou seja, se regressao polinomial, entao gera potenciais de x
+        for j=2:p-1
+            for i=1:n
+                x(i,j+1)=x(i,2)^j; % ^j
+            end
+        end
+    end
+    % U = zeros(p, p);
+    for i=1:p % equacoes normais
+        for j=1:p
+            summy=0;
+            for k=1:n
+                summy=summy+x(k,i)*x(k,j);
+            end
+            sxx(i,j)=summy; % matriz dos coeficientes
+        end
+        summy=0;
+        for k=1:n
+            summy=summy+x(k,i)*y(k);
+        end
+        sxy(i)=summy; % vetor dos termos independentes
+    end
+    L = cholesky(p, sxx); % p = ordem, sxx = matriz
+    t = suc_subst(p, L, sxy); % L = lower
+    for i=1:p
+        for j=1:i
+            U(j,i)=L(i,j); % U = L transposta
+        end
+    end
+    b = ret_subst(U, t);
+    D=0;
+    sy2 = 0;
+    for i=1:n
+        summy=0;
+        for j=1:p
+            summy=summy+b(j)*x(i,j);
+        end
+        u(i)=summy;
+        d(i)=y(i)-u(i);
+        D=D+d(i)^2;
+        sy2=sy2+y(i)^2;
+    end
+    R2=1-D/(sy2-sxy(1)^2/n); % coeficiente de determinacao
+    sigma2= D/(n-p); % variancia residual
+end
+
+function interpolated = intLagrange2(number_of_points, X, Y, value_to_interpolate)
+    %X, Y = arrays of points i have
+    interpolated=0;
+    for i=1:number_of_points
+       numerator=1;
+       denominator=1;
+       for j=1:number_of_points
+           if i~=j
+               numerator = numerator*(value_to_interpolate-X(j));
+               denominator = denominator*(X(i)-X(j));
+           end
+       end
+       interpolated=interpolated+Y(i)*(numerator/denominator);    
+    end
+end
+
+function interpolated = intGregoryNewton(number_of_points, X, Y, value_to_interpolate)
+    for i=1:number_of_points
+        Dely(i)=Y(i);
+    end
+    % construindo as diferencas finitas
+    for k=1:number_of_points-1
+        for i=number_of_points:-1:k+1
+            Dely(i)=Dely(i)-Dely(i-1);
+        end
+    end
+    % avaliacao pelo processo de Horner
+    u=(value_to_interpolate-X(1))/(X(2)-X(1));
+    interpolated=Dely(number_of_points);
+    for i=number_of_points-1:-1:1
+        interpolated=interpolated*(u-i+1)/i+Dely(i);
+    end
+end
