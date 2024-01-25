@@ -70,6 +70,77 @@ PERDASGN = [33 31 27 32 35]; % Y
 INTGREGNEWTON = intGregoryNewton(5, CARGASGN, PERDASGN, 7.3);
 % INTGREGNEWTON = 27.6301
 
+function [L, det, error] = cholesky(order, matrix)
+    %order = 3;
+    %matrix = [4 -2 2; -2 10 -7; 2 -7 30];
+    %does the decomposition LLᵗ of a matrix
+    det=1;
+    L=zeros(order,order);
+
+    for j=1:order
+        summy=0;
+        for k = 1:j-1
+            summy=summy + L(j,k)^2;
+        end
+        t=matrix(j,j)-summy;
+        det=det*t;
+        error = t<=0;
+        if error==1
+            return;
+            %prompt = "A matriz não é definida positiva";
+            %error(prompt);
+        else
+            L(j,j)=sqrt(t);
+            r=1/L(j,j);
+        end
+        for i=j+1:order
+            summy=0;
+            for k=1:j-1
+                summy=summy+L(i,k)*L(j,k);
+            end
+            L(i,j)=(matrix(i,j)-summy)*r;
+        end
+    end
+end
+
+function Y = suc_subst(order, lower_tri_matrix, vet_ans)
+    %solves lower triangular matrix systems using LX=C
+    %LX=C, is lower_tri_matrix*X=vet_ans
+    if order<1 
+         prompt = "The order must be equal or higher then 1, try again."; 
+         error(prompt);
+    end
+    
+    Y=zeros(1,order); %just of speed
+    
+    Y(1) = vet_ans(1)/lower_tri_matrix(1,1);
+    for i=2:order
+        summy=0;
+        for j=1:i-1
+            summy=summy+lower_tri_matrix(i,j)*Y(j);
+        end
+        Y(i)=(vet_ans(i)-summy)/lower_tri_matrix(i,i);
+    end
+end
+
+function X = ret_subst(upper_tri_matrix, vet_ans)
+    %aceita vetor linha ou coluna como vet_ans
+    %solves upper triangular matrix systems using UX=D
+    %UX=D, is upper_tri_matrix*X=vet_ans
+    
+    [order,~] = size(upper_tri_matrix);
+    %X=zeros(order,1); %para devolver vetor coluna
+    X=zeros(1,order); %para devolver vetor linha
+    X(order) = vet_ans(order)/upper_tri_matrix(order,order);
+    for i=order-1:-1:1
+        summy=0;
+        for j=i+1:order
+            summy=summy+upper_tri_matrix(i,j)*X(j);
+        end
+        X(i)=(vet_ans(i)-summy)/upper_tri_matrix(i,i);
+    end
+end
+
 function [b, R2, sigma2] = regressaoLinearMultipla(n, v, p, x, y)
     
     
