@@ -1,6 +1,7 @@
 ### Regressão Linear Múltipla e Interpolação
 
-Devo lembrar que as resoluções daqui dadas _não foram corrigidas pelo professor_ e podem conter erros.
+> [!WARNING]
+> Devo lembrar que as resoluções daqui dadas _não foram corrigidas pelo professor_ e podem conter erros.
 
 Entretanto, espero ajudar em algo!
 
