@@ -1,4 +1,4 @@
-### Encontrando Raízes Reais
+### Encontrando Raízes
 
 > [!WARNING]
 > Devo lembrar que as resoluções daqui dadas _não foram corrigidas pelo professor_ e podem conter erros.
