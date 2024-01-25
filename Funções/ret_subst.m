@@ -2,7 +2,6 @@ function X = ret_subst(upper_tri_matrix, vet_ans)
     %aceita vetor linha ou coluna como vet_ans
     %solves upper triangular matrix systems using UX=D
     %UX=D, is upper_tri_matrix*X=vet_ans
-    
     [order,~] = size(upper_tri_matrix);
     %X=zeros(order,1); %para devolver vetor coluna
     X=zeros(1,order); %para devolver vetor linha
