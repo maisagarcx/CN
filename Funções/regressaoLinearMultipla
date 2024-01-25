@@ -1,4 +1,9 @@
 function [b, R2, sigma2] = regressaoLinearMultipla(n, v, p, x, y)
+    sxx = zeros(p,p);
+    sxy = zeros(p);
+    U = zeros(p,p);
+    u = zeros(n);
+    d = zeros(n);
     if (v>1)&&((v+1)~=p)
         prompt = "Modelo Invalido";
         error(prompt);
